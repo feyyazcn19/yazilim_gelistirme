@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -52,6 +53,13 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'ogrenci_no' => ['required', 'string', 'max:9','min:9', 'unique:users'],
+            'tc' => ['required', 'string', 'max:12', 'min:11', 'unique:users'],
+            'sinif' => ['required', 'integer', 'min:1','max:4'],
+            'ogrenci_bolum' => ['required', 'string', 'max:255'],
+            'ogrenci_fakulte' => ['required', 'string', 'max:255'],
+            'telefon_no' => ['required', 'string',  'max:10','min:10'],
+            'dogum' => ['required', 'date'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -64,10 +72,26 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+         $user=User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
+            'email'=>$data['email'],
+            'ogrenci_no' => $data['ogrenci_no'],
+            'tc' => $data['tc'],
+            'sinif' => $data['sinif'],
+            'ogrenci_fakulte' => $data['ogrenci_fakulte'],
+            'ogrenci_bolum' => $data['ogrenci_bolum'],
+            'telefon_no' => $data['telefon_no'],
+            'dogum' => $data['dogum'],
             'password' => Hash::make($data['password']),
         ]);
+
+
+       Role::create([
+          'email'=> $data['email'],
+          'role'=>"kullanici",
+        ]);
+
+        return $user;
+
     }
 }
