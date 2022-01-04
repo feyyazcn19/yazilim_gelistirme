@@ -12,6 +12,5 @@ class Pdf extends Model
     protected $fillable=[
       'email',
       'pdf_url'
-      
     ];
 }
