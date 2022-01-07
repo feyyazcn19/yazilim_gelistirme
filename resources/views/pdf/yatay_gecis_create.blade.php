@@ -10,42 +10,82 @@
      font-family: "DejaVu Sans Mono", monospace;
    }
 
-        .form-tipi{
-          text-align: right;
-          font-size: 10px;
-        }
-        .text-center{
-            text-align: center;
-        }
-        .frame{
-            border: 1px solid black;
-            margin-top: 8px;
-            padding: 10px;
-        }
-        table{
-            width: 100%;
-        }
-        .main{
-            margin:2px;
-        }
 
-        th{
-          text-align: left;
-        }
-        th p,td p{
-          font-size: 8px;
-        }
-        th,td{
-          padding: 0;
-          margin: 0;
-        }
+           .form-tipi{
+             text-align: right;
+             font-size: 10px;
+           }
+           .text-center{
+               text-align: center;
+           }
+           .frame{
+               margin-top: 1px;
+               padding: 0 10px ;
 
-        .title{
-          border-bottom: 1px solid black;
-        }
-        tr{
-          height:12.95px !important;
-        }
+           }
+           table{
+               width: 100%;
+           }
+           .main{
+               margin:15px 0px;
+               padding: 0 10px;
+           }
+
+           th{
+             text-align: left;
+           }
+           th p,td p{
+             font-size: 10px;
+             width: fit-content;
+           }
+           th,td{
+             padding: 0;
+             margin: 0;
+           }
+
+           .title{
+             border-bottom: 1px solid black;
+           }
+           tr{
+             height:12.95px ;
+           }
+           .table tr, .table td,.table th{
+             border-bottom: 0.5px solid black;
+             border-left: 0.5px solid black;
+             padding-left: 5px;
+           }
+
+
+
+           .table{
+             border: 0.4px solid black;
+             border-collapse:collapse;
+             width:100%;
+           }
+           .table .col{
+             border-right: 0.5px solid black;
+
+           }
+           .table .end{
+             border-bottom: none;
+
+           }
+           .table thead .col{
+               border-right:none;
+           }
+           .table thead p span{
+               font-weight:bold;
+               font-size: 10px;
+           }
+           .sub-table td,th{
+               min-width:20px;
+           }
+           .sub-table p{
+             width: fit-content;
+           }
+           .tab{
+             text-align: right;
+           }
 
     </style>
     <meta charset="UTF-8">
@@ -68,43 +108,26 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @php $i=0; @endphp
+                  @foreach($basvuru_turleri as $tur)
                   <tr>
-                    <td>
-                            <p>KURUMİÇİ YATAY GEÇİŞ BAŞVURUSU <span></span></p>
-                    </td>
-                    <td >
-                      <img src="https://icon-library.com/images/checkbox-icon-png/checkbox-icon-png-29.jpg" alt="" width="10px" height="10px">
-                    </td>
-                    <td>
-                          <p>KURUMLARARASI YATAY GEÇİŞ BAŞVURUSU</p>
-                    </td>
-                    <td >
-                      <img src="https://icon-library.com/images/checkbox-icon-png/checkbox-icon-png-7.jpg" alt="" width="10px" height="10px">
-                    </td>
+                      <td >
+                        <p>
+                        @if($tur==$basvuruturu)
+                            <img src="https://icon-library.com/images/checkbox-icon-png/checkbox-icon-png-29.jpg" alt="" width="10px" height="10px">
+                        @else
+                            <img src="https://icon-library.com/images/checkbox-icon-png/checkbox-icon-png-7.jpg" alt="" width="10px" height="10px">
+                        @endif
+                       {{$tur}}<span></span></p>
+                      </td>
 
-                  </tr>
+                  @if($i%2==1)
+                    </tr>
+                  @endif
 
-                  <tr>
-                    <td>
-                          <p>
-                            MER. YER. PUANIYLA YATAY GEÇİŞ BAŞVURUSU
-                          </p>
+                  @php $i++; @endphp
+                  @endforeach
 
-
-                    </div>
-                    </td>
-                    <td >
-                      <img src="https://icon-library.com/images/checkbox-icon-png/checkbox-icon-png-7.jpg" alt="" width="10px" height="10px">
-                    </td>
-
-                    <td>
-                            <p>YURT DIŞI YATAY GEÇİŞ BAŞVURUSU <span></span></p>
-                    </td>
-                    <td >
-                      <img src="https://icon-library.com/images/checkbox-icon-png/checkbox-icon-png-7.jpg" alt="" width="10px" height="10px">
-                    </td>
-
-                  </tr>
 
                 </tbody>
               </table>
@@ -140,16 +163,7 @@
                     </tr>
                     <tr>
                       <td>
-                           <p>TELEFON(GSM):{{$telefon_no}}</p>
-                      </td>
-                      <td>
-                           <p>TELEFON(EV/İŞ):............</p>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>
-                           <p>TEBLİGAT ADRES:............</p>
+                           <p>TEBLİGAT ADRES:{{$adres}}</p>
                       </td>
                     </tr>
 
@@ -171,7 +185,7 @@
                     <tbody>
                       <tr>
                         <td>
-                             <p>HALEN KAYITLI OLDUĞU ÜNİVERSİTE  :...........</p>
+                             <p>HALEN KAYITLI OLDUĞU ÜNİVERSİTE  : {{$uni}}</p>
                         </td>
                       </tr>
                       <tr>
@@ -190,19 +204,28 @@
 
                       <tr>
                         <td>
-                             <p>ÖĞRETİM TÜRÜ: I.ÖĞRETİM <img src="https://icon-library.com/images/checkbox-icon-png/checkbox-icon-png-29.jpg" alt="" width="10px" height="10px"> II.ÖĞRETİM <img src="https://icon-library.com/images/checkbox-icon-png/checkbox-icon-png-7.jpg" alt="" width="10px" height="10px">  SINIF/ YARIYIL :{{$sinif}}</p>
+                          @if($ogrenim_turu=='1')
+                          <p>
+                          <img src="https://icon-library.com/images/checkbox-icon-png/checkbox-icon-png-29.jpg" alt="" width="10px" height="10px">
+                          I.ÖĞRETİM
+                          <img src="https://icon-library.com/images/checkbox-icon-png/checkbox-icon-png-7.jpg" alt="" width="10px" height="10px">
+                          II.ÖĞRETİM
+                        </p>
+                          @else
+                          <p>
+                          <img src="https://icon-library.com/images/checkbox-icon-png/checkbox-icon-png-7.jpg" alt="" width="10px" height="10px">
+                          I.ÖĞRETİM
+                          <img src="https://icon-library.com/images/checkbox-icon-png/checkbox-icon-png-29.jpg" alt="" width="10px" height="10px">
+                          II.ÖĞRETİM
+                          SINIF/ YARIYIL :{{$sinif}}
+                        </p>
+                          @endif
                         </td>
                       </tr>
 
                       <tr>
                         <td>
-                             <p>DİSİPLİN CEZASI ALIP ALMADIĞI:</p>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                             <p>GENEL AKADEMİK BAŞARI NOT ORTALAMASI:</p>
+                             <p>GENEL AKADEMİK BAŞARI NOT ORTALAMASI:{{$gortalama}}</p>
                         </td>
                       </tr>
 
@@ -214,21 +237,16 @@
 
                       <tr>
                         <td>
-                             <p>HALEN KAYITLI OLDUĞU YÜKSEKÖĞRETİM KURUMUNA YERLEŞTİRİLDİĞİ YIL:</p>
+                             <p>HALEN KAYITLI OLDUĞU YÜKSEKÖĞRETİM KURUMUNA YERLEŞTİRİLDİĞİ YIL:{{$yerlesme_yil}}</p>
                         </td>
                       </tr>
 
                       <tr>
                         <td>
-                             <p>HALEN KAYITLI OLUNAN PROGRAMA YERLEŞTİRMEDE KULLANILAN PUAN TÜRÜ VE PUANI	:</p>
+                             <p>HALEN KAYITLI OLUNAN PROGRAMA YERLEŞTİRMEDE KULLANILAN PUAN TÜRÜ VE PUANI	:{{$puan_turu}} / {{$puan}}</p>
                         </td>
                       </tr>
 
-                      <tr>
-                        <td>
-                             <p>ZORUNLU HAZIRLIK SINIFI BULUNAN PROGRAMLARA BAŞVURAN ADAYLAR İÇİN YABANCI DİL PUANI VE SINAV TÜRÜ	:</p>
-                        </td>
-                      </tr>
 
                     </tbody>
                   </table>
@@ -251,26 +269,15 @@
                       <tbody>
                         <tr>
                           <td>
-                               <p>FAKÜLTE / YÜKSEKOKUL/MYO.  ADI	  :...........</p>
+                               <p>FAKÜLTE / YÜKSEKOKUL/MYO.  ADI	: {{$ogrenci_fakulte}}  <p>
                           </td>
                         </tr>
                         <tr>
                           <td>
-                               <p>BÖLÜM / PROGRAM ADI:</p>
+                               <p>BÖLÜM / PROGRAM ADI: {{$basvuru_bolum}}</p>
                           </td>
                         </tr>
 
-                        <tr>
-                          <td>
-                               <p>ÖĞRETİM TÜRÜ: I.ÖĞRETİM <img src="https://icon-library.com/images/checkbox-icon-png/checkbox-icon-png-29.jpg" alt="" width="10px" height="10px">    II.ÖĞRETİM <img src="https://icon-library.com/images/checkbox-icon-png/checkbox-icon-png-7.jpg" alt="" width="10px" height="10px"></p>
-                          </td>
-                        </tr>
-
-                        <tr>
-                          <td>
-                               <p>BAŞVURULAN PROGRAMIN HALEN KAYITLI OLUNAN PROGRAMA YERLEŞTİRME YAPILDIĞI PUAN TÜRÜ VE PUANI	: </p>
-                          </td>
-                        </tr>
 
                         <tr>
                           <td>
@@ -281,7 +288,7 @@
                         <tr>
 
                           <td>
-                               <p>TARİHİ: .../..../....</p>
+                               <p>TARİHİ: {{date('d/m/y')}}</p>
                           </td>
 
                           <td>
@@ -292,25 +299,7 @@
                       </tbody>
                     </table>
 
-
-
-
-
-
-
-
-
-
-
-
         </div>
-
-
-
     </div>
-
-
-
-
 </body>
 </html>
