@@ -19,6 +19,57 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <style>
+      body{
+        background-color: #181717;
+
+      }
+      a{
+        text-decoration: none;
+      }
+
+
+      .card{
+        background-color: #ffffff12;
+      }
+
+      .card a{
+        color:white;
+      }
+
+      .card-0:hover{
+        box-shadow: 12px 12px 6px 2px #00000038;
+        margin-top: 2px;
+      }
+
+      h3, p,h1,h2,h3,h4,h5,h6{
+        color: #EEEEEE;
+      }
+      .card-1{
+        background: #8946A6;
+      }
+      .card-2{
+        background: #3FA796;
+      }
+      .card-3{
+        background: #C996CC;
+      }
+      .card-4{
+        background: #FF7777;
+      }
+      .card-5{
+        background: #3B185F;
+      }
+      .btn-go{
+        background-color: #ffffff42;
+        border-radius: 20px;
+        padding: 10px;
+
+      }
+      .card-head{
+        padding: 20px;
+      }
+    </style>
 
 </head>
 <body>
@@ -55,10 +106,10 @@
                             @endif
                         @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">{{ __('Başvuru Oluştur') }}</a>
+                            <a class="nav-link" href="{{ route('home') }}">{{ __('Raporları Görüntüle') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pdf_bekleme') }}">{{ __('Başvurularımı Görüntüle') }}</a>
+                            <a class="nav-link" href="{{ route('pdf_bekleme') }}">{{ __('Başvuruları Görüntüle') }}</a>
                         </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

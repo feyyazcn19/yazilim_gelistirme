@@ -10,12 +10,16 @@ class PdfUploadMongo extends Controller
     //
     public function upload(Request $request)
     {
-      $request->file->move(public_path('pdf'),$request->file->getClientOriginalName());
-      $path=public_path('pdf').'\\'.$request->file->getClientOriginalName();
+      $filename=$request->file->getClientOriginalName();
+      $request->file->storeAs('public/pdf',$filename);
+      $path=$request->file->storeAs('public/pdf',$filename);
       $email=Auth::user()->email;
+      $path=str_replace('public','storage',$path);
       Pdf::create([
         'email'=>$email,
-        'pdf_url'=>$path
+        'pdf_url'=>$path,
+        'onay'=>"Beklemede",
+        'tip'=>$request->tip
       ]);
 
       return view('home');

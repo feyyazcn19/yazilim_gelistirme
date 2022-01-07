@@ -13,7 +13,7 @@ class FormController extends Controller
 
     public function cap(){
       $form=[
-        'basvuru_tipi'=>'Çift Anadal Programı',
+        'basvuru_tipi'=>1,
         'action'=>'cap',
         'enctype'=>'false',
         'inputs'=>[
@@ -64,7 +64,7 @@ class FormController extends Controller
       $ders=Ders::where('bolum',$user->ogrenci_bolum)->get();
 
       $form=[
-        'basvuru_tipi'=>'Yaz Okulu',
+        'basvuru_tipi'=>3,
         'action'=>'yazders',
         'enctype'=>'false',
         'submmit'=>'Başvuru Oluştur',
@@ -172,7 +172,7 @@ class FormController extends Controller
       $ders=Ders::where('bolum',$user->ogrenci_bolum)->get();
 
       $form=[
-        'basvuru_tipi'=>'Ders İntibakı',
+        'basvuru_tipi'=>4,
         'action'=>'dersinitabak',
         'enctype'=>'false',
         'submmit'=>'Başvuru Oluştur',
@@ -252,7 +252,7 @@ class FormController extends Controller
 
     public function dgs(){
       $form=[
-        'basvuru_tipi'=>'Dikey Geçiş Sınavı',
+        'basvuru_tipi'=>5,
         'action'=>'dgs',
         'enctype'=>'false',
         'submmit'=>'Başvuru Oluştur',
@@ -435,7 +435,7 @@ class FormController extends Controller
       date_default_timezone_set('Europe/Istanbul');
       $date=date('Y');
       $form=[
-        'basvuru_tipi'=>'Yatay Geçiş Sınavı',
+        'basvuru_tipi'=>2,
         'action'=>'yataygecis',
         'enctype'=>'false',
         'submmit'=>'Başvuru Oluştur',

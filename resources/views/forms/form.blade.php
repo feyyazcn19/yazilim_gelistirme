@@ -77,6 +77,7 @@
 
           <div class="mb-5">
             <label for="" style="color:white" class="mb-3">Dosya Yükle</label>
+            <input type="hidden" name="tip" value="{{$form['basvuru_tipi']}}">
             <p style="color:#EEEEEE"><i class="bi bi-exclamation-circle"></i> Lütfen indirmiş olduğunuz başvuruyu imzalayarak yükleyin. Aksi halde başvurunuz değerlendirilmeye alınmayacaktır.</p>
             <input type="file" name="file" value="" class="form-control">
           </div>

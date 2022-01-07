@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PdfGenerate;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\PdfUploadMongo;
+use App\Http\Controllers\ListPDF;
+use App\Http\Controllers\PdfGuncelle;
+
+
 
 
 /*
@@ -23,8 +27,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::middleware('role')->get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/admin',function(){
+    return view('admin.home');
+});
 //PDF Yarat
 Route::post('pdf/yataygecis', [PdfGenerate::class, 'yatay_gecis_create'])->name('yataygecis');
 Route::post('pdf/dersinitabak', [PdfGenerate::class, 'ders_intibaki_create'])->name('dersinitabak');
@@ -43,3 +49,23 @@ Route::get('form/yataygecis', [FormController::class, 'yatay'])->name('formYatay
 //PDF Upload
 
 Route::post('upload/pdf', [PdfUploadMongo::class, 'upload'])->name('upload_pdf');
+
+
+//PDF pdflistele
+Route::get('pdf/beklemede', [ListPDF::class, 'authList'])->name('pdf_bekleme');
+Route::get('pdf/onaylanan', [ListPDF::class, 'onayList'])->name('pdf_onay');
+Route::get('pdf/reddedilen', [ListPDF::class, 'redList'])->name('pdf_red');
+
+
+//admin
+Route::get('admin/basvurular', function(){
+  return view('admin.basvurular');
+})->name('admin_basvurular');
+
+Route::get('admin/listele/beklemede/{basvurutipi}',[ListPDF::class,'adminListBekleme'])->name('admin_bekleme');
+Route::get('admin/listele/onay/{basvurutipi}',[ListPDF::class,'adminListOnay'])->name('admin_onay');
+Route::get('admin/listele/red/{basvurutipi}',[ListPDF::class,'adminListRed'])->name('admin_red');
+
+
+
+Route::post('admin/pdfguncelle',[PdfGuncelle::class,'guncelle'])->name('pdfguncelle');

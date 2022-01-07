@@ -197,7 +197,7 @@ class PdfGenerate extends Controller
       $turkish = array("ı", "ğ", "ü", "ş", "ö", "ç",'Ö','Ç',' ','Ş','Ğ','İ');//turkish letters
       $english   = array("i", "g", "u", "s", "o", "c",'o','c','_','s','g','i');//english cooridinators letters
       $user_name_change = str_replace($turkish, $english, strtolower($user->name));//replace php function
-      $filename=$user->ogrenci_no.'_'.$user_name_change .'_'.$now->format("ymd").'.pdf';
+      $filename=$user->ogrenci_no.'_'.$user_name_change .'_'.$now->format("ymdhms").'.pdf';
       return $filename;
     }
 

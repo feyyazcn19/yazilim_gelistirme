@@ -16,6 +16,8 @@ class Pdf extends Migration
         Schema::create('pdf', function (Blueprint $table) {
             $table->string('email');
             $table->string('pdf_url');
+            $table->string('onay');
+            $table->string('tip');
             $table->timestamps();
         });
     }
