@@ -17,7 +17,7 @@ class Pdf extends Migration
             $table->string('email');
             $table->string('pdf_url');
             $table->string('onay');
-            $table->string('tip');
+            $table->integer('tip');
             $table->timestamps();
         });
     }

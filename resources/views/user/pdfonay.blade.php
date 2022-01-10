@@ -2,48 +2,10 @@
 
 @section('content')
 
-<style>
-  body{
-    background-color: white;
-
-  }
-  a{
-    text-decoration: none;
-
-  }
-
-
-  .card{
-    background-color: #ffffff12;
-  }
-
-  .card a{
-    color:white;
-  }
-
-  .card-0:hover{
-    box-shadow: 12px 12px 6px 2px #00000038;
-    margin-top: 2px;
-  }
-
-h3,   p{
-    color: #EEEEEE;
-  }
-  .card-1{
-    background: #8946A6;
-  }
-  .card-2{
-    background: #3FA796;
-  }
-  .card-3{
-    background: #C996CC;
-  }
-  .card-4{
-    background: #FF7777;
-  }
-  .card-5{
-    background: #3B185F;
-  }
+<style media="screen">
+body{
+  background-color: white;
+}
 </style>
 
 <div class="container" >
@@ -57,7 +19,8 @@ h3,   p{
           <div class="card bg-dark">
               <div class="card-body">
                 <h3>Merhaba {{Auth::user()->name;}}, Onaylanan başvuruları görüntülüyorsun.</h3>
-                <p >Dosyayı görüntüleye tıklayarak gönderdiin dosyları görüntüleyebilirsin.</p>
+                <p >PDF ikonuna tıklayarak gönderdiğin dosyları görüntüleyebilirsin.</p>
+
 
               </div>
           </div>

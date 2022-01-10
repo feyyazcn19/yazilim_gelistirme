@@ -2,54 +2,14 @@
 
 @section('content')
 
-<style>
-  body{
-    background-color: #181717;
 
-  }
-  a{
-    text-decoration: none;
-  }
-
-
-  .card{
-    background-color: #ffffff12;
-  }
-
-  .card a{
-    color:white;
-  }
-
-  .card-0:hover{
-    box-shadow: 12px 12px 6px 2px #00000038;
-    margin-top: 2px;
-  }
-
-  h3, p{
-    color: #EEEEEE;
-  }
-  .card-1{
-    background: #8946A6;
-  }
-  .card-2{
-    background: #3FA796;
-  }
-  .card-3{
-    background: #C996CC;
-  }
-  .card-4{
-    background: #FF7777;
-  }
-  .card-5{
-    background: #3B185F;
-  }
-</style>
 
 <div class="container" >
     <div class="row justify-content-center" style="margin-top:10%;">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
+
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -57,9 +17,11 @@
 
                     @endif
 
-                    <h3>Merhaba {{Auth::user()->name;}}, Başvuru Yapmaya hazırsın.</h3>
-                    <p >Başvuru oluşturmak için bilgilerini girerken lütfen doğru bilgileri giriniz. Aksi halde başvurularınız değerlendirilmeye alınmayacaktır.</p>
+                    <div class="bg-dark p-3 mb-5" style="border-radius:10px;">
+                      <h3>Merhaba {{Auth::user()->name;}}, Başvuru Yapmaya hazırsın.</h3>
+                      <p >Başvuru oluşturmak için bilgilerini girerken lütfen doğru bilgileri giriniz. Aksi halde başvurularınız değerlendirilmeye alınmayacaktır.</p>
 
+                    </div>
 
                     <div class="card card-1 card-0 mb-5">
                       <div class="card-body">

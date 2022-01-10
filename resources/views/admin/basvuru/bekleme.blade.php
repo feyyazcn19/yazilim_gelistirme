@@ -56,7 +56,7 @@ h3,   p{
         <div class="col-md-12">
           <div class="card bg-dark">
               <div class="card-body">
-                <h3>Merhaba {{Auth::user()->name;}}, Beklemede olan başvuruları görüntülüyorsun.</h3>
+                <h3>Merhaba {{Auth::user()->name;}}, {{$basvurular->onay}} başvuruları görüntülüyorsun.</h3>
                 <p >Dosyayı görüntüleye tıklayarak gönderdiin dosyları görüntüleyebilirsin.</p>
 
               </div>
@@ -73,9 +73,9 @@ h3,   p{
           <table class="table table-dark table-striped mt-5">
                 <thead>
                   <tr>
-                    <th scope="col">Seç</th>
+                    <th scope="col"><input type="checkbox" id="tumu" onclick="tumuCheked()" >  Tümünü Seç</th>
                     <th scope="col">Kullanıcı Adı</th>
-                    <th scope="col">Başvuru Tip</th>
+                    <th scope="col">Başvuru Tipi</th>
                     <th scope="col">Durumu</th>
                     <th scope="col">Oluşturma Tarih</th>
                     <th scope="col">Görüntüle</th>
@@ -86,10 +86,10 @@ h3,   p{
                   @foreach($basvurular as $basvuru)
                   <tr>
                     <th scope="row">
-                      <input type="checkbox" name="pdf_id[]" value="{{$basvuru->_id}}">
+                      <input type="checkbox" class="pdf_id" name="pdf_id[]" onclick="disab()" value="{{$basvuru->_id}}">
                     </th>
                     <th scope="row">{{$basvuru->username}}</th>
-                    <th scope="row">{{$basvuru->tip}}</th>
+                    <th scope="row">{{$basvuru->tipName}}</th>
                     <td>{{$basvuru->onay}}</td>
                     <td>{{$basvuru->created_at}}</td>
                     <td> <a href="/{{$basvuru->pdf_url}}" target="_blank"><i class="bi bi-file-earmark-pdf" style="color:white;"></i></a> </td>
@@ -103,46 +103,75 @@ h3,   p{
 
         </div>
     </div>
-
     <div class="row justify-content-center mt-5" >
+    @php
+    $i=1; @endphp
+
+    @foreach($basvurular->routes as $route)
       <div class="col-md-6">
-        <div class="card card-3 card-0 mb-5">
+        <div class="card card-{{$i}} card-0 mb-5">
           <div class="card-body">
-            <a href="/admin/listele/onay/{{$basvurular->tip_id}}"  ><i class="bi bi-circle-square"></i> Onaylanan Başvuruları Görüntüle</a><br><br>
-            <p>Bu alanda sadece onaylanan başvurular yer alacaktır. </p>
-            <a href="/admin/listele/onay/{{$tip}}"  >Görüntüle</a><br><br>
+            <a href="/admin/listele/{{$route}}/{{$basvurular->tip}}"  ><i class="bi bi-circle-square"></i> {{ucfirst($route)}} olan Başvuruları Görüntüle</a><br><br>
+            <p>Bu alanda sadece {{$route}} olan başvurular yer alacaktır. </p>
+            <a href="/admin/listele/{{$route}}/{{$basvurular->tip}}"  >Görüntüle</a><br><br>
 
           </div>
         </div>
       </div>
-
-      <div class="col-md-6">
-        <div class="card card-1 card-0 mb-5">
-          <div class="card-body">
-            <a href="/admin/listele/red/{{$basvurular->tip_id}}"  ><i class="bi bi-circle-square"></i> Reddedilen Başvuruaları Görüntüle</a><br><br>
-            <p>Bu alandaki başvular admin tarafından reddedilen başvurulardır.</p>
-            <a href="/admin/listele/red/{{$tip}}"  >Görüntüle</a><br><br>
-
-          </div>
-        </div>
-      </div>
-
+      @php $i++ @endphp
+      @endforeach
     </div>
+
 </div>
 
 <script type="text/javascript">
       durum=document.getElementById('durum');
       submit=document.getElementById('submit');
-      if(durum.selectedIndex!=0)
-         submit.disabled=false;
+      pdf_id=document.getElementsByClassName('pdf_id');
+
+
+        function kontorol(pdf_id)
+        {
+          for (var i = 0; i < pdf_id.length; i++) {
+            if(pdf_id[i].checked)
+              return 1
+          }
+
+          return 0;
+
+        };
+
+      if(durum.selectedIndex!=0 && kontorol(pdf_id))
+          submit.disabled=false;
+
       function disab(){
         durum=document.getElementById('durum');
         submit=document.getElementById('submit');
-        if(durum.selectedIndex!=0)
-           submit.disabled=false;
+        pdf_id=document.getElementsByClassName('pdf_id');
+        if(durum.selectedIndex!=0 && kontorol(pdf_id))
+          submit.disabled=false;
         else
           submit.disabled=true;
-      }
+      };
+
+      function tumuCheked()
+      {
+        pdf_id=document.getElementsByClassName('pdf_id');
+        tumu=document.getElementById('tumu');
+
+        if(tumu.checked){
+          for (var i = 0; i < pdf_id.length; i++) {
+            pdf_id[i].checked=true;
+          }
+        }
+        else{
+          for (var i = 0; i < pdf_id.length; i++) {
+            pdf_id[i].checked=false;
+          }
+        }
+      };
+
+
 </script>
 
 

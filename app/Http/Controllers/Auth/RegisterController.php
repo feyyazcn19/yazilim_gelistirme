@@ -86,7 +86,7 @@ class RegisterController extends Controller
         ]);
 
 
-       Role::create([
+       $role=Role::create([
           'email'=> $data['email'],
           'role'=>"kullanici",
         ]);

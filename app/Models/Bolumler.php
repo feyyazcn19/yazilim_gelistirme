@@ -4,17 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 //use Illuminate\Database\Eloquent\Model;
-//Dikkat
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class Pdf extends Model
+class Bolumler extends Model
 {
     use HasFactory;
-    protected $table="pdf";
+    protected $table="bolumler";
     protected $fillable=[
-      'email',
-      'pdf_url',
-      'onay',
-      'tip'
+      'bolum_adi',
+      'fakulte'
     ];
 }

@@ -19,7 +19,7 @@ class PdfUploadMongo extends Controller
         'email'=>$email,
         'pdf_url'=>$path,
         'onay'=>"Beklemede",
-        'tip'=>$request->tip
+        'tip'=>intval($request->tip)
       ]);
 
       return view('home');

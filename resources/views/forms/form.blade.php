@@ -1,10 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+<style media="screen">
+  p{
+    color:#212529;
+  }
+</style>
 <div class="container">
     <div class="row justify-content-center px-5 py-5">
 
-        <h3 class="text-center bg-dark p-4" style="color:white;border-radius:20px;">{{$form['basvuru_tipi']}} Başvurusu</h3>
+        <h3 class="text-center bg-dark p-4" style="color:white;border-radius:20px;">{{$form['basvuru_name']}} Başvurusu</h3>
         <p class="mt-3"> <i class="bi bi-exclamation-circle"></i> Lütfen Öncelikle PDF Oluşturun oluşturduğunuz PDF Dosyasını imzalatıp alta bulunan PDF Yükle Formuna yükleyin.</p>
         <form class="form mt-5 p-5" action="{{ route($form['action']) }}" style="border:1px solid #ced4da; border-radius:20px;" method="post" enctype="{{$form['enctype']}}">
           @csrf
@@ -77,7 +82,7 @@
 
           <div class="mb-5">
             <label for="" style="color:white" class="mb-3">Dosya Yükle</label>
-            <input type="hidden" name="tip" value="{{$form['basvuru_tipi']}}">
+            <input type="hidden" name="tip" value="{{$form['tip_id']}}">
             <p style="color:#EEEEEE"><i class="bi bi-exclamation-circle"></i> Lütfen indirmiş olduğunuz başvuruyu imzalayarak yükleyin. Aksi halde başvurunuz değerlendirilmeye alınmayacaktır.</p>
             <input type="file" name="file" value="" class="form-control">
           </div>

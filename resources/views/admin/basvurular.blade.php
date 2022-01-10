@@ -11,13 +11,7 @@
         <div class="col-md-8">
             <div class="card">
 
-                <div class="card-head">
-                  <h2>Başvuru Listeleme</h2>
-                  <p >Tüm Başvuruları görüntülemek, durumlarını değiştirmek için aşağıdaki linkleri kullanabilirsin.
-                  </p>
 
-                  <a href="/admin/listele/bekleme/6" class="btn-go mb-5" >Tüm Başvuruları Görüntüle</a>
-                </div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -27,7 +21,14 @@
 
                     @endif
 
+                    <div class=" bg-dark p-4 mb-5" style="border-radius:10px">
+                      <h2>Başvuru Listeleme</h2>
+                      <p >Tüm Başvuruları görüntülemek, durumlarını değiştirmek için aşağıdaki linkleri kullanabilirsin.
+                      </p>
 
+
+                      <a href="{{route('admin_tumu')}}" class="btn-go mb-5" >Tüm Başvuruları Görüntüle</a>
+                    </div>
 
 
                     <div class="card card-1 card-0 mb-5">

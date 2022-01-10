@@ -47,43 +47,80 @@ class ListPDF extends Controller
 
     public function adminListBekleme($tip)
     {
-        $data=Pdf::where('onay','Beklemede')->where('tip',$tip)->get();
+        $tip=intval($tip);
+        $data=Pdf::where('tip',$tip)->where('onay','Beklemede')->get();
+
         foreach ($data as $item) {
-           $item->tip=BasvurTipi::where('basvuru_id',$item->tip)->first()->tip;
+           $item->tipName=BasvurTipi::where('basvuru_id',$tip)->first()->tip;
            $item->username=User::where('email',$item->email)->first()->name;
-
         }
+        $data->tip=$tip;
+        $data->onay="Beklemedi ki";
+        $data->routes=[
+          'onay',
+          'red'
+        ];
 
+      //  dd($data);
         return view('admin.basvuru.bekleme')->with('basvurular',$data);
 
     }
 
     public function adminListRed($tip)
     {
-      $data=Pdf::where('onay','Red')->where('tip',$tip)->get();
+      $tip=intval($tip);
+      $data=Pdf::where('tip',$tip)->where('onay','Red')->get();
 
       foreach ($data as $item) {
-         $item->tip=BasvurTipi::where('basvuru_id',$item->tip)->first()->tip;
+         $item->tipName=BasvurTipi::where('basvuru_id',$tip)->first()->tip;
          $item->username=User::where('email',$item->email)->first()->name;
-
       }
-      
-        return view('admin.basvuru.red')->with('basvurular',$data);
+      $data->tip=$tip;
+      $data->onay="Reddedilen";
+      $data->routes=[
+        'beklemede',
+        'onay'
+      ];
+
+    //  dd($data);
+      return view('admin.basvuru.bekleme')->with('basvurular',$data);
 
     }
 
     public function adminListOnay($tip)
     {
-      $data=Pdf::where('onay','Onaylandı')->where('tip',$tip)->get();
+      $tip=intval($tip);
+      $data=Pdf::where('tip',$tip)->where('onay','Onaylandı')->get();
 
       foreach ($data as $item) {
-         $item->tip=BasvurTipi::where('basvuru_id',$item->tip)->first()->tip;
+         $item->tipName=BasvurTipi::where('basvuru_id',$tip)->first()->tip;
          $item->username=User::where('email',$item->email)->first()->name;
-
       }
-        return view('admin.basvuru.onay')->with('basvurular',$data);
+      $data->tip=$tip;
+      $data->onay="Onaylanan";
+      $data->routes=[
+        'beklemede',
+        'red'
+      ];
+
+    //  dd($data);
+      return view('admin.basvuru.bekleme')->with('basvurular',$data);
 
     }
+
+    public function adminListTumu()
+    {
+      $data=Pdf::get();
+
+      foreach ($data as $item) {
+         $item->tipName=BasvurTipi::where('basvuru_id',$item->tip)->first()->tip;
+         $item->username=User::where('email',$item->email)->first()->name;
+      }
+    //  dd($data);
+      return view('admin.basvuru.tumu')->with('basvurular',$data);
+
+    }
+
 
 
 

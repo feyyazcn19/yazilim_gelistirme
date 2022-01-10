@@ -89,7 +89,7 @@ class PdfGenerate extends Controller
             $i++;
           }
 
-      }
+      };
 
       $data=[
         'name'=> $user->name,
@@ -163,7 +163,7 @@ class PdfGenerate extends Controller
             $i++;
           }
 
-      }
+      };
       $data=[
         'name'=> $user->name,
         'ogrenci_no'=>$user->ogrenci_no,

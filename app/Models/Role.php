@@ -12,7 +12,7 @@ class Role extends Model
     protected  $table="role";
     protected $fillable=[
       'email',
-      'role',
+      'role'
     ];
 
 }

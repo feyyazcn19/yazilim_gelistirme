@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Ders;
+use App\Models\BasvurTipi;
+
 
 class FormController extends Controller
 {
@@ -12,8 +14,11 @@ class FormController extends Controller
     public $uni;
 
     public function cap(){
+      $basvuruName=BasvurTipi::where('basvuru_id',1)->first()->tip;
+
       $form=[
-        'basvuru_tipi'=>1,
+        'basvuru_name'=>$basvuruName,
+        'tip_id'=>1,
         'action'=>'cap',
         'enctype'=>'false',
         'inputs'=>[
@@ -59,12 +64,14 @@ class FormController extends Controller
     }
     public function yaz(){
 
+      $basvuruName=BasvurTipi::where('basvuru_id',3)->first()->tip;
       $universite=$this->uni;
       $user=Auth::user();
       $ders=Ders::where('bolum',$user->ogrenci_bolum)->get();
 
       $form=[
-        'basvuru_tipi'=>3,
+        'basvuru_name'=>$basvuruName,
+        'tip_id'=>3,
         'action'=>'yazders',
         'enctype'=>'false',
         'submmit'=>'Başvuru Oluştur',
@@ -170,9 +177,11 @@ class FormController extends Controller
       $universite=$this->uni;
       $user=Auth::user();
       $ders=Ders::where('bolum',$user->ogrenci_bolum)->get();
+      $basvuruName=BasvurTipi::where('basvuru_id',4)->first()->tip;
 
       $form=[
-        'basvuru_tipi'=>4,
+        'basvuru_name'=>$basvuruName,
+        'tip_id'=>4,
         'action'=>'dersinitabak',
         'enctype'=>'false',
         'submmit'=>'Başvuru Oluştur',
@@ -243,7 +252,6 @@ class FormController extends Controller
         ],
       ];
 
-      //dd($form);
       return view('forms.form')->with('form',$form);
 
 
@@ -251,8 +259,10 @@ class FormController extends Controller
     }
 
     public function dgs(){
+      $basvuruName=BasvurTipi::where('basvuru_id',5)->first()->tip;
       $form=[
-        'basvuru_tipi'=>5,
+        'basvuru_name'=>$basvuruName,
+        'tip_id'=>5,
         'action'=>'dgs',
         'enctype'=>'false',
         'submmit'=>'Başvuru Oluştur',
@@ -432,10 +442,12 @@ class FormController extends Controller
       $universite=$this->uni;
       $user=Auth::user();
       $ders=Ders::where('bolum',$user->ogrenci_bolum)->get();
+      $basvuruName=BasvurTipi::where('basvuru_id',2)->first()->tip;
       date_default_timezone_set('Europe/Istanbul');
       $date=date('Y');
       $form=[
-        'basvuru_tipi'=>2,
+        'basvuru_name'=>$basvuruName,
+        'tip_id'=>2,
         'action'=>'yataygecis',
         'enctype'=>'false',
         'submmit'=>'Başvuru Oluştur',
